@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:localhealthcarecompany="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany" xmlns:properties="http://eu.chorevolution.farmbusinessstartup/properties" xmlns:tns="http://eu.chorevolution.farmbusinessstartup/propertiesAliases" xmlns:user="http://eu.chorevolution.farmbusinessstartup/cduser" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="propertiesAliases" targetNamespace="http://eu.chorevolution.farmbusinessstartup/propertiesAliases">
+  <import location="localhealthcarecompany.wsdl" namespace="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany"/>
+  <import location="cdUser.wsdl" namespace="http://eu.chorevolution.farmbusinessstartup/cduser"/>
+  <vprop:propertyAlias messageType="localhealthcarecompany:farmBusinessStartupRequestElementRequest" part="farmBusinessStartupRequestElementRequest" propertyName="properties:chorID">
+    <vprop:query>choreographyId/choreographyId</vprop:query>
+  </vprop:propertyAlias>
+  <vprop:propertyAlias messageType="user:farmBusinessStartupResponseMessageRequest" part="parameters" propertyName="properties:chorID">
+    <vprop:query>choreographyId/choreographyId</vprop:query>
+  </vprop:propertyAlias>
+</definitions>

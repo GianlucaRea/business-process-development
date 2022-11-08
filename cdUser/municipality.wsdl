@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eu.chorevolution.farmbusinessstartup/services/municipality" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MunicipalityService" targetNamespace="http://eu.chorevolution.farmbusinessstartup/services/municipality">
+  <types>
+    <xsd:schema targetNamespace="http://eu.chorevolution.farmbusinessstartup/services/municipality" version="1.0">
+        <xsd:element name="farmBusinessCodeStartupNotificationElementRequest" type="tns:farmBusinessCodeStartupNotification"/>
+		<xsd:complexType name="farmBusinessCodeStartupNotification">
+			<xsd:sequence>	
+	            <xsd:element name="farmCode" type="xsd:string"/>  
+	   			<xsd:element name="farm" type="tns:farmDetails"/>                                	          							
+			</xsd:sequence>
+		</xsd:complexType>    	
+	    <xsd:complexType name="farmDetails">
+	        <xsd:sequence>
+	            <xsd:element name="farmName" type="xsd:string"/>  
+	            <xsd:element name="companyName" type="xsd:string"/>   
+	            <xsd:element name="companyType" type="tns:companyTypology"/>     
+	     		<xsd:element name="companyHeadquarter" type="tns:addressDetails"/> 
+	            <xsd:element name="farmSurface" type="xsd:int"/>   
+	     		<xsd:element name="phoneNumber" type="xsd:string"/>
+				<xsd:element name="email" type="xsd:string"/>                      
+				<xsd:element name="vatNumber" type="xsd:string"/>            
+	            <xsd:element name="productionType" type="tns:productionTypology"/>
+	            <xsd:element name="breedingMethodologyType" type="tns:breedingMethodTypology"/>            
+	        </xsd:sequence>
+	    </xsd:complexType>	
+		<xsd:simpleType name="companyTypology">
+			<xsd:restriction base="xsd:string">
+	    		<xsd:enumeration value="individual company"/>		
+	    		<xsd:enumeration value="partnership"/>				
+			</xsd:restriction>
+		</xsd:simpleType>	 
+	    <xsd:complexType name="addressDetails">
+	        <xsd:sequence>
+	            <xsd:element name="city" type="xsd:string"/>       
+	            <xsd:element name="street" type="xsd:string"/>
+	            <xsd:element name="postcode" type="xsd:int"/>            
+	        </xsd:sequence>
+	    </xsd:complexType>	
+		<xsd:simpleType name="productionTypology">
+			<xsd:restriction base="xsd:string">
+	    		<xsd:enumeration value="weaning center"/>		
+	    		<xsd:enumeration value="fattening for self-consumption"/>		
+	    		<xsd:enumeration value="fattening cattle adults"/>		
+	    		<xsd:enumeration value="fattening calf white meat"/>		
+	    		<xsd:enumeration value="milk production"/>			
+			</xsd:restriction>
+		</xsd:simpleType>
+		<xsd:simpleType name="breedingMethodTypology">
+			<xsd:restriction base="xsd:string">
+	    		<xsd:enumeration value="intensive"/>		
+	    		<xsd:enumeration value="free-range intensive"/>		
+	    		<xsd:enumeration value="transhumant"/>					
+			</xsd:restriction>
+		</xsd:simpleType>	    		   	      	   			    	    	   		   	 			   	            	   		       
+    </xsd:schema>
+  </types>
+  <message name="farmBusinessCodeStartupNotificationMessageRequest">
+    <part element="tns:farmBusinessCodeStartupNotificationElementRequest" name="parameters">
+    </part>
+  </message>
+  <portType name="MunicipalityPT">
+    <operation name="farmBusinessCodeStartupNotification">
+      <input message="tns:farmBusinessCodeStartupNotificationMessageRequest">
+    </input>
+    </operation>
+  </portType>
+  <binding name="MunicipalityBinding" type="tns:MunicipalityPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="farmBusinessCodeStartupNotification">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+  </binding>
+  <service name="MunicipalityService">
+    <port binding="tns:MunicipalityBinding" name="MunicipalityPort">
+      <soap:address location="http://localhost:9090/Municipality/Municipality"/>
+    </port>
+  </service>
+</definitions>

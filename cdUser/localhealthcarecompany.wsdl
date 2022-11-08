@@ -1,0 +1,248 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany"
+	targetNamespace="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany">
+	<wsdl:types>
+		<xsd:schema
+			xmlns="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany"
+			xmlns:tns="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany">
+			<xsd:complexType name="farmBusinessStartupRequest">
+				<xsd:sequence>
+					<xsd:element name="farmBusinessStartupRequestForm"
+						type="farmBusinessStartupRequestFormDetails" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmBusinessStartupRequestFormDetails">
+				<xsd:sequence>
+					<xsd:element name="owner" type="personData" />
+					<xsd:element name="farm" type="farmDetails" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="personData">
+				<xsd:sequence>
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="surname" type="xsd:string" />
+					<xsd:element name="address" type="addressDetails" />
+					<xsd:element name="phoneNumber" type="xsd:string" />
+					<xsd:element name="email" type="xsd:string" />
+					<xsd:element name="fiscalCode" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="addressDetails">
+				<xsd:sequence>
+					<xsd:element name="city" type="xsd:string" />
+					<xsd:element name="street" type="xsd:string" />
+					<xsd:element name="postcode" type="xsd:int" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmDetails">
+				<xsd:sequence>
+					<xsd:element name="farmName" type="xsd:string" />
+					<xsd:element name="companyName" type="xsd:string" />
+					<xsd:element name="companyType" type="companyTypology" />
+					<xsd:element name="companyHeadquarter" type="addressDetails" />
+					<xsd:element name="farmSurface" type="xsd:int" />
+					<xsd:element name="phoneNumber" type="xsd:string" />
+					<xsd:element name="email" type="xsd:string" />
+					<xsd:element name="vatNumber" type="xsd:string" />
+					<xsd:element name="productionType" type="productionTypology" />
+					<xsd:element name="breedingMethodologyType" type="breedingMethodTypology" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:simpleType name="companyTypology">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="individual company" />
+					<xsd:enumeration value="partnership" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="productionTypology">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="weaning center" />
+					<xsd:enumeration value="fattening for self-consumption" />
+					<xsd:enumeration value="fattening cattle adults" />
+					<xsd:enumeration value="fattening calf white meat" />
+					<xsd:enumeration value="milk production" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="breedingMethodTypology">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="intensive" />
+					<xsd:enumeration value="free-range intensive" />
+					<xsd:enumeration value="transhumant" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="farmSiteInspectionRequest">
+				<xsd:sequence>
+					<xsd:element name="farmName" type="xsd:string" />
+					<xsd:element name="companyName" type="xsd:string" />
+					<xsd:element name="siteAddress" type="addressDetails" />
+					<xsd:element name="farmSurface" type="xsd:int" />
+					<xsd:element name="productionType" type="productionTypology" />
+					<xsd:element name="breedingMethodologyType" type="breedingMethodTypology" />
+					<xsd:element name="siteInspectionDeadline" type="xsd:date" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmSiteInspectionResponse">
+				<xsd:sequence>
+					<xsd:element name="siteInspectionVerbal" type="veterinarySiteInspectionDetails" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="veterinarySiteInspectionDetails">
+				<xsd:sequence>
+					<xsd:element name="veterinaryName" type="xsd:string" />
+					<xsd:element name="veterinarySurname" type="xsd:string" />
+					<xsd:element name="siteAddress" type="addressDetails" />
+					<xsd:element name="farmSurface" type="xsd:int" />
+					<xsd:element name="productionType" type="productionTypology" />
+					<xsd:element name="breedingMethodologyType" type="breedingMethodTypology" />
+					<xsd:element name="siteInspectionDate" type="xsd:date" />
+					<xsd:element name="referenceLegislation" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmOpeningNotification">
+				<xsd:sequence>
+					<xsd:element name="farmOpeningRequestForm"
+						type="farmBusinessStartupRequestFormDetails" />
+					<xsd:element name="siteInspectionDetails" type="veterinarySiteInspectionDetails" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmRegistrationRequest">
+				<xsd:sequence>
+					<xsd:element name="owner" type="personData" />
+					<xsd:element name="farm" type="farmDetails" />
+					<xsd:element name="siteInspectionDetails" type="veterinarySiteInspectionDetails" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmRegistrationResponse">
+				<xsd:sequence>
+					<xsd:element name="farmCode" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmBusinessStartupResponse">
+				<xsd:sequence>
+					<xsd:element name="farmCode" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmRegistrationNotification">
+				<xsd:sequence>
+					<xsd:element name="farmCode" type="xsd:string" />
+					<xsd:element name="farmName" type="xsd:string" />
+					<xsd:element name="siteAddress" type="addressDetails" />
+					<xsd:element name="farmSurface" type="xsd:int" />
+					<xsd:element name="productionType" type="productionTypology" />
+					<xsd:element name="breedingMethodologyType" type="breedingMethodTypology" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmBusinessCodeStartupNotification">
+				<xsd:sequence>
+					<xsd:element name="farmCode" type="xsd:string" />
+					<xsd:element name="farm" type="farmDetails" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="choreographyInstanceRequest">
+				<xsd:sequence>
+					<xsd:element name="choreographyId" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="farmBusinessStartupRequestType">
+				<xsd:sequence>
+					<xsd:element name="choreographyId" type="choreographyInstanceRequest" />
+					<xsd:element name="senderParticipantName" type="xsd:string" />
+					<xsd:element name="receiverParticipantName" type="xsd:string" />
+					<xsd:element name="choreographyTaskName" type="xsd:string" />
+					<xsd:element name="inputMessageName" type="xsd:string" />
+					<xsd:element name="inputMessageData" type="farmBusinessStartupRequest" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="farmBusinessStartupRequestElementRequest"
+				type="farmBusinessStartupRequestType" />
+			<xsd:complexType name="farmSiteInspectionResponseType">
+				<xsd:sequence>
+					<xsd:element name="choreographyId" type="choreographyInstanceRequest" />
+					<xsd:element name="senderParticipantName" type="xsd:string" />
+					<xsd:element name="receiverParticipantName" type="xsd:string" />
+					<xsd:element name="choreographyTaskName" type="xsd:string" />
+					<xsd:element name="inputMessageName" type="xsd:string" />
+					<xsd:element name="inputMessageData" type="farmSiteInspectionResponse" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="farmSiteInspectionResponseElementRequest"
+				type="farmSiteInspectionResponseType" />
+			<xsd:complexType name="farmRegistrationNotificationType">
+				<xsd:sequence>
+					<xsd:element name="choreographyId" type="choreographyInstanceRequest" />
+					<xsd:element name="senderParticipantName" type="xsd:string" />
+					<xsd:element name="receiverParticipantName" type="xsd:string" />
+					<xsd:element name="choreographyTaskName" type="xsd:string" />
+					<xsd:element name="inputMessageName" type="xsd:string" />
+					<xsd:element name="inputMessageData" type="farmRegistrationNotification" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="farmRegistrationNotificationElementRequest"
+				type="farmRegistrationNotificationType" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="farmSiteInspectionResponseElementRequest">
+		<wsdl:part element="sch:farmSiteInspectionResponseElementRequest"
+			name="farmSiteInspectionResponseElementRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="farmRegistrationNotificationElementRequest">
+		<wsdl:part element="sch:farmRegistrationNotificationElementRequest"
+			name="farmRegistrationNotificationElementRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="farmBusinessStartupRequestElementRequest">
+		<wsdl:part element="sch:farmBusinessStartupRequestElementRequest"
+			name="farmBusinessStartupRequestElementRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="LocalHealthcareCompanyPort">
+		<wsdl:operation name="farmSiteInspectionResponseElement">
+			<wsdl:input message="tns:farmSiteInspectionResponseElementRequest"
+				name="farmSiteInspectionResponseElementRequest">
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="farmRegistrationNotificationElement">
+			<wsdl:input message="tns:farmRegistrationNotificationElementRequest"
+				name="farmRegistrationNotificationElementRequest">
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="farmBusinessStartupRequestElement">
+			<wsdl:input message="tns:farmBusinessStartupRequestElementRequest"
+				name="farmBusinessStartupRequestElementRequest">
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="LocalHealthcareCompanyPortSoap11"
+		type="tns:LocalHealthcareCompanyPort">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="farmSiteInspectionResponseElement">
+			<soap:operation soapAction="" />
+			<wsdl:input name="farmSiteInspectionResponseElementRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="farmRegistrationNotificationElement">
+			<soap:operation soapAction="" />
+			<wsdl:input name="farmRegistrationNotificationElementRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="farmBusinessStartupRequestElement">
+			<soap:operation soapAction="" />
+			<wsdl:input name="farmBusinessStartupRequestElementRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="LocalHealthcareCompanyPortService">
+		<wsdl:port binding="tns:LocalHealthcareCompanyPortSoap11"
+			name="LocalHealthcareCompanyPortSoap11">
+			<soap:address location="http://localhost:7070/LocalHealthcareCompany" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
