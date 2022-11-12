@@ -39,7 +39,7 @@ public class LocalHealthcareCompanyEndpoint {
 	public void receiveFarmSiteInspectionVerbal(@RequestPayload FarmSiteInspectionResponseType request) {
 
 		System.out.println("Received SOAP message farmSiteInspectionResponseType");
-		
+
 		runtimeService.createMessageCorrelation("farmSiteInspectionResponseType")
 				.processInstanceBusinessKey(request.getChoreographyId().getChoreographyId())
 				.setVariable("farmSiteInspectionResponseType", request)
