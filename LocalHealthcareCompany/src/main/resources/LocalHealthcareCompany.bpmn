@@ -51,7 +51,7 @@
           <camunda:inputOutput>
             <camunda:inputParameter name="headers">
               <camunda:map>
-                <camunda:entry key="Content-Type">application/soap+xml;charset=UTF-8;action=""</camunda:entry>
+                <camunda:entry key="Content-Type">text/xml</camunda:entry>
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:reg="http://eu.chorevolution.farmbusinessstartup/registryoffice"&gt;
@@ -59,62 +59,62 @@
    &lt;soapenv:Body&gt;
       &lt;reg:farmOpeningNotificationElementRequest&gt;
          &lt;choreographyId&gt;
-            &lt;choreographyId&gt;1&lt;/choreographyId&gt;
+            &lt;choreographyId&gt;${farmBusinessStartupRequestType.choreographyId.choreographyId}&lt;/choreographyId&gt;
          &lt;/choreographyId&gt;
-         &lt;senderParticipantName&gt;Local Healthcare Company&lt;/senderParticipantName&gt;
-         &lt;receiverParticipantName&gt;Registry Office&lt;/receiverParticipantName&gt;
-         &lt;choreographyTaskName&gt;Farm Opening&lt;/choreographyTaskName&gt;
-         &lt;inputMessageName&gt;farmOpeningNotification&lt;/inputMessageName&gt;
+         &lt;senderParticipantName&gt;${farmBusinessStartupRequestType.senderParticipantName}&lt;/senderParticipantName&gt;
+         &lt;receiverParticipantName&gt;{farmBusinessStartupRequestType.receiverParticipantName}&lt;/receiverParticipantName&gt;
+         &lt;choreographyTaskName&gt;${farmBusinessStartupRequestType.choreographyTaskName}&lt;/choreographyTaskName&gt;
+         &lt;inputMessageName&gt;${farmBusinessStartupRequestType.inputMessageName}&lt;/inputMessageName&gt;
          &lt;inputMessageData&gt;
             &lt;farmOpeningRequestForm&gt;
                &lt;owner&gt;
-                  &lt;name&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.name}&lt;/name&gt;
-                  &lt;surname&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.surname}&lt;/surname&gt;
+                  &lt;name&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.name}&lt;/name&gt;
+                  &lt;surname&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.surname}&lt;/surname&gt;
                   &lt;address&gt;
-                     &lt;city&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.address.city}&lt;/city&gt;
-                     &lt;street&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.address.street}&lt;/street&gt;
-                     &lt;postcode&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.address.postcode}&lt;/postcode&gt;
+                     &lt;city&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.address.city}&lt;/city&gt;
+                     &lt;street&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.address.street}&lt;/street&gt;
+                     &lt;postcode&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.address.postcode}&lt;/postcode&gt;
                   &lt;/address&gt;
-                  &lt;phoneNumber&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.phoneNumber}&lt;/phoneNumber&gt;
-                  &lt;email&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.email}&lt;/email&gt;
-                  &lt;fiscalCode&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.owner.fiscalCode}&lt;/fiscalCode&gt;
+                  &lt;phoneNumber&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.phoneNumber}&lt;/phoneNumber&gt;
+                  &lt;email&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.email}&lt;/email&gt;
+                  &lt;fiscalCode&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.fiscalCode}&lt;/fiscalCode&gt;
                &lt;/owner&gt;
                &lt;farm&gt;
-                  &lt;farmName&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.farmName}&lt;/farmName&gt;
-                  &lt;companyName&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.companyName}&lt;/companyName&gt;
-                  &lt;companyType&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.companyType}&lt;/companyType&gt;
+                  &lt;farmName&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.farmName}&lt;/farmName&gt;
+                  &lt;companyName&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyName}&lt;/companyName&gt;
+                  &lt;companyType&gt;?&lt;/companyType&gt;
                   &lt;companyHeadquarter&gt;
-                     &lt;city&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.companyHeadquarter.city}&lt;/city&gt;
-                     &lt;street&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.companyHeadquarter.street}&lt;/street&gt;
-                     &lt;postcode&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.companyHeadquarter.postcode}&lt;/postcode&gt;
+                     &lt;city&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyHeadquarter.city}&lt;/city&gt;
+                     &lt;street&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyHeadquarter.street}&lt;/street&gt;
+                     &lt;postcode&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyHeadquarter.postcode}&lt;/postcode&gt;
                   &lt;/companyHeadquarter&gt;
-                  &lt;farmSurface&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.farmSurface}&lt;/farmSurface&gt;
-                  &lt;phoneNumber&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.productionType}&lt;/phoneNumber&gt;
-                  &lt;email&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.email}&lt;/email&gt;
-                  &lt;vatNumber&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.vatNumber}&lt;/vatNumber&gt;
-                  &lt;productionType&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.productionType}&lt;/productionType&gt;
-                  &lt;breedingMethodologyType&gt;${farmBusinessStartupRequest.farmBusinessStartupRequestForm.farm.breedingMethodologyType}&lt;/breedingMethodologyType&gt;
+                  &lt;farmSurface&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.farmSurface}&lt;/farmSurface&gt;
+                  &lt;phoneNumber&gt;?&lt;/phoneNumber&gt;
+                  &lt;email&gt;?&lt;/email&gt;
+                  &lt;vatNumber&gt;?&lt;/vatNumber&gt;
+                  &lt;productionType&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.productionType}&lt;/productionType&gt;
+                  &lt;breedingMethodologyType&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.breedingMethodologyType}&lt;/breedingMethodologyType&gt;
                &lt;/farm&gt;
             &lt;/farmOpeningRequestForm&gt;
             &lt;siteInspectionDetails&gt;
-               &lt;veterinaryName&gt;${farmSiteInspectionResponse.siteInspectionVerbal.veterinaryName}&lt;/veterinaryName&gt;
-               &lt;veterinarySurname&gt;${farmSiteInspectionResponse.siteInspectionVerbal.veterinarySurname}&lt;/veterinarySurname&gt;
+               &lt;veterinaryName&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.veterinaryName}&lt;/veterinaryName&gt;
+               &lt;veterinarySurname&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.veterinarySurname}&lt;/veterinarySurname&gt;
                &lt;siteAddress&gt;
-                  &lt;city&gt;${farmSiteInspectionResponse.siteInspectionVerbal.siteAddress.city}&lt;/city&gt;
-                  &lt;street&gt;${farmSiteInspectionResponse.siteInspectionVerbal.siteAddress.street}&lt;/street&gt;
-                  &lt;postcode&gt;${farmSiteInspectionResponse.siteInspectionVerbal.siteAddress.postcode}&lt;/postcode&gt;
+                  &lt;city&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteAddress.city}&lt;/city&gt;
+                  &lt;street&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteAddress.street}&lt;/street&gt;
+                  &lt;postcode&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteAddress.postcode}&lt;/postcode&gt;
                &lt;/siteAddress&gt;
-               &lt;farmSurface&gt;${farmSiteInspectionResponse.siteInspectionVerbal.farmSurface}&lt;/farmSurface&gt;
-               &lt;productionType&gt;${farmSiteInspectionResponse.siteInspectionVerbal.productionType}&lt;/productionType&gt;
-               &lt;breedingMethodologyType&gt;${farmSiteInspectionResponse.siteInspectionVerbal.breedingMethodologyType}&lt;/breedingMethodologyType&gt;
-               &lt;siteInspectionDate&gt;${farmSiteInspectionResponse.siteInspectionVerbal.siteInspectionDate}&lt;/siteInspectionDate&gt;
-               &lt;referenceLegislation&gt;${farmSiteInspectionResponse.siteInspectionVerbal.referenceLegislation}&lt;/referenceLegislation&gt;
+               &lt;farmSurface&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.farmSurface}&lt;/farmSurface&gt;
+               &lt;productionType&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.productionType}&lt;/productionType&gt;
+               &lt;breedingMethodologyType&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.breedingMethodologyType}&lt;/breedingMethodologyType&gt;
+               &lt;siteInspectionDate&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteInspectionDate}&lt;/siteInspectionDate&gt;
+               &lt;referenceLegislation&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.referenceLegislation}&lt;/referenceLegislation&gt;
             &lt;/siteInspectionDetails&gt;
          &lt;/inputMessageData&gt;
       &lt;/reg:farmOpeningNotificationElementRequest&gt;
    &lt;/soapenv:Body&gt;
 &lt;/soapenv:Envelope&gt;</camunda:inputParameter>
-            <camunda:inputParameter name="url">http://localhost:9090/RegistryOffice/RegistryOffice</camunda:inputParameter>
+            <camunda:inputParameter name="url">http://localhost:7090/RegistryOffice</camunda:inputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>soap-http-connector</camunda:connectorId>
         </camunda:connector>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
-  <bpmn:process id="Veterinary-process" name="Veterinary" isExecutable="true">
+  <bpmn:process id="Veterinary" name="Veterinary" isExecutable="true">
     <bpmn:startEvent id="farmSiteInspectionRequestType" name="Farm Opening Site Inspection Requested">
       <bpmn:outgoing>Flow_0ixrxu5</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1nc86a3" messageRef="Message_3c0utlq" />
@@ -12,11 +12,11 @@
     <bpmn:endEvent id="Event_088ce3b">
       <bpmn:incoming>Flow_0ofeusa</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:scriptTask id="Activity_11ggnb0" name="hellow" scriptFormat="javascript">
-      <bpmn:incoming>Flow_00uqgw1</bpmn:incoming>
+    <bpmn:scriptTask id="Activity_11ggnb0" name="Script" scriptFormat="javascript">
+      <bpmn:incoming>Flow_0wjdkjh</bpmn:incoming>
       <bpmn:outgoing>Flow_0ofeusa</bpmn:outgoing>
       <bpmn:script>var system = java.lang.System;
-system.out.println("Hello World!")</bpmn:script>
+system.out.println("Veterinary Process Finished")</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_0ofeusa" sourceRef="Activity_11ggnb0" targetRef="Event_088ce3b" />
     <bpmn:sendTask id="Activity_0g5t4p8" name="Send Fram Site Inspection Verbal">
@@ -66,7 +66,7 @@ system.out.println("Hello World!")</bpmn:script>
       <bpmn:incoming>Flow_1umfifd</bpmn:incoming>
       <bpmn:outgoing>Flow_00uqgw1</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sequenceFlow id="Flow_00uqgw1" sourceRef="Activity_0g5t4p8" targetRef="Activity_11ggnb0" />
+    <bpmn:sequenceFlow id="Flow_00uqgw1" sourceRef="Activity_0g5t4p8" targetRef="farmRegistrationNotificationType" />
     <bpmn:sequenceFlow id="Flow_0ixrxu5" sourceRef="farmSiteInspectionRequestType" targetRef="Activity_18xwakz" />
     <bpmn:intermediateCatchEvent id="Event_0ham0zw">
       <bpmn:incoming>Flow_0gb0f3k</bpmn:incoming>
@@ -77,41 +77,40 @@ system.out.println("Hello World!")</bpmn:script>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_1umfifd" sourceRef="Event_0ham0zw" targetRef="Activity_0g5t4p8" />
     <bpmn:sequenceFlow id="Flow_0gb0f3k" sourceRef="Activity_18xwakz" targetRef="Event_0ham0zw" />
+    <bpmn:sequenceFlow id="Flow_0wjdkjh" sourceRef="farmRegistrationNotificationType" targetRef="Activity_11ggnb0" />
+    <bpmn:receiveTask id="farmRegistrationNotificationType" name="Receive Farm Healthcare Registration" messageRef="Message_2edcth0">
+      <bpmn:incoming>Flow_00uqgw1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wjdkjh</bpmn:outgoing>
+    </bpmn:receiveTask>
   </bpmn:process>
   <bpmn:message id="Message_3c0utlq" name="farmSiteInspectionRequestType" />
+  <bpmn:message id="Message_2edcth0" name="farmRegistrationNotificationType" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Veterinary-process">
-      <bpmndi:BPMNEdge id="Flow_0ofeusa_di" bpmnElement="Flow_0ofeusa">
-        <di:waypoint x="750" y="120" />
-        <di:waypoint x="882" y="120" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_00uqgw1_di" bpmnElement="Flow_00uqgw1">
-        <di:waypoint x="570" y="120" />
-        <di:waypoint x="650" y="120" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ixrxu5_di" bpmnElement="Flow_0ixrxu5">
-        <di:waypoint x="198" y="120" />
-        <di:waypoint x="240" y="120" />
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Veterinary">
+      <bpmndi:BPMNEdge id="Flow_0gb0f3k_di" bpmnElement="Flow_0gb0f3k">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="382" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1umfifd_di" bpmnElement="Flow_1umfifd">
         <di:waypoint x="418" y="120" />
         <di:waypoint x="470" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0gb0f3k_di" bpmnElement="Flow_0gb0f3k">
-        <di:waypoint x="340" y="120" />
-        <di:waypoint x="382" y="120" />
+      <bpmndi:BPMNEdge id="Flow_0ixrxu5_di" bpmnElement="Flow_0ixrxu5">
+        <di:waypoint x="198" y="120" />
+        <di:waypoint x="240" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_0vzel4q_di" bpmnElement="Activity_11ggnb0">
-        <dc:Bounds x="650" y="80" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_088ce3b_di" bpmnElement="Event_088ce3b">
-        <dc:Bounds x="882" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_01zxqke" bpmnElement="Activity_0g5t4p8">
-        <dc:Bounds x="470" y="80" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_00uqgw1_di" bpmnElement="Flow_00uqgw1">
+        <di:waypoint x="570" y="120" />
+        <di:waypoint x="650" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ofeusa_di" bpmnElement="Flow_0ofeusa">
+        <di:waypoint x="930" y="120" />
+        <di:waypoint x="982" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wjdkjh_di" bpmnElement="Flow_0wjdkjh">
+        <di:waypoint x="750" y="120" />
+        <di:waypoint x="830" y="120" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1fqhwd5_di" bpmnElement="farmSiteInspectionRequestType">
         <dc:Bounds x="162" y="102" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -122,8 +121,22 @@ system.out.println("Hello World!")</bpmn:script>
         <dc:Bounds x="240" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_01zxqke" bpmnElement="Activity_0g5t4p8">
+        <dc:Bounds x="470" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1a8yp9q_di" bpmnElement="Event_0ham0zw">
         <dc:Bounds x="382" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p8zhhg_di" bpmnElement="farmRegistrationNotificationType">
+        <dc:Bounds x="650" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vzel4q_di" bpmnElement="Activity_11ggnb0">
+        <dc:Bounds x="830" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_088ce3b_di" bpmnElement="Event_088ce3b">
+        <dc:Bounds x="982" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

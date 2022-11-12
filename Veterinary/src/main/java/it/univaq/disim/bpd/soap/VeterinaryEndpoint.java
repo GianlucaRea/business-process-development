@@ -8,6 +8,7 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
+import it.univaq.disim.bpd.domain.FarmRegistrationNotificationType;
 import it.univaq.disim.bpd.domain.FarmSiteInspectionRequestType;
 
 @Endpoint
@@ -31,16 +32,16 @@ public class VeterinaryEndpoint {
 
 	}
 	
-	private static String generateRandBusinessKey() {
-		int leftLimit = 97; // letter 'a'
-	    int rightLimit = 122; // letter 'z'
-	    int targetStringLength = 10;
-	    Random random = new Random();
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "farmRegistrationNotificationElementRequest")
+	public void requestFarmInspection(@RequestPayload FarmRegistrationNotificationType request) {
+		
+		System.out.println("Received SOAP message farmRegistrationNotificationType");
+		
+		runtimeService.createMessageCorrelation("farmRegistrationNotificationType")
+				.processInstanceBusinessKey(request.getChoreographyId().getChoreographyId())
+				.setVariable("farmRegistrationNotificationType", request)
+				.correlate();
 
-	    return random.ints(leftLimit, rightLimit + 1)
-	      .limit(targetStringLength)
-	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-	      .toString();
 	}
 
 }
