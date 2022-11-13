@@ -1,11 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1wrndud" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
-  <bpmn:process id="Process_173o0bd" name="LocalHealthcareCompany" isExecutable="true">
+  <bpmn:process id="LocalHealthcareCompany" name="LocalHealthcareCompany" isExecutable="true">
+    <bpmn:documentation>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:reg="http://eu.chorevolution.farmbusinessstartup/registryoffice"&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;reg:farmOpeningNotificationElementRequest&gt;
+         &lt;choreographyId&gt;
+            &lt;choreographyId&gt;${farmBusinessStartupRequestType.choreographyId.choreographyId}&lt;/choreographyId&gt;
+         &lt;/choreographyId&gt;
+         &lt;senderParticipantName&gt;${farmBusinessStartupRequestType.senderParticipantName}&lt;/senderParticipantName&gt;
+         &lt;receiverParticipantName&gt;{farmBusinessStartupRequestType.receiverParticipantName}&lt;/receiverParticipantName&gt;
+         &lt;choreographyTaskName&gt;${farmBusinessStartupRequestType.choreographyTaskName}&lt;/choreographyTaskName&gt;
+         &lt;inputMessageName&gt;${farmBusinessStartupRequestType.inputMessageName}&lt;/inputMessageName&gt;
+         &lt;inputMessageData&gt;
+            &lt;farmOpeningRequestForm&gt;
+               &lt;owner&gt;
+                  &lt;name&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.name}&lt;/name&gt;
+                  &lt;surname&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.surname}&lt;/surname&gt;
+                  &lt;address&gt;
+                     &lt;city&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.address.city}&lt;/city&gt;
+                     &lt;street&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.address.street}&lt;/street&gt;
+                     &lt;postcode&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.address.postcode}&lt;/postcode&gt;
+                  &lt;/address&gt;
+                  &lt;phoneNumber&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.phoneNumber}&lt;/phoneNumber&gt;
+                  &lt;email&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.email}&lt;/email&gt;
+                  &lt;fiscalCode&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.owner.fiscalCode}&lt;/fiscalCode&gt;
+               &lt;/owner&gt;
+               &lt;farm&gt;
+                  &lt;farmName&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.farmName}&lt;/farmName&gt;
+                  &lt;companyName&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyName}&lt;/companyName&gt;
+                  &lt;companyType&gt;?&lt;/companyType&gt;
+                  &lt;companyHeadquarter&gt;
+                     &lt;city&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyHeadquarter.city}&lt;/city&gt;
+                     &lt;street&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyHeadquarter.street}&lt;/street&gt;
+                     &lt;postcode&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.companyHeadquarter.postcode}&lt;/postcode&gt;
+                  &lt;/companyHeadquarter&gt;
+                  &lt;farmSurface&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.farmSurface}&lt;/farmSurface&gt;
+                  &lt;phoneNumber&gt;?&lt;/phoneNumber&gt;
+                  &lt;email&gt;?&lt;/email&gt;
+                  &lt;vatNumber&gt;?&lt;/vatNumber&gt;
+                  &lt;productionType&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.productionType}&lt;/productionType&gt;
+                  &lt;breedingMethodologyType&gt;${farmBusinessStartupRequestType.inputMessageData.farmBusinessStartupRequestForm.farm.breedingMethodologyType}&lt;/breedingMethodologyType&gt;
+               &lt;/farm&gt;
+            &lt;/farmOpeningRequestForm&gt;
+            &lt;siteInspectionDetails&gt;
+               &lt;veterinaryName&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.veterinaryName}&lt;/veterinaryName&gt;
+               &lt;veterinarySurname&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.veterinarySurname}&lt;/veterinarySurname&gt;
+               &lt;siteAddress&gt;
+                  &lt;city&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteAddress.city}&lt;/city&gt;
+                  &lt;street&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteAddress.street}&lt;/street&gt;
+                  &lt;postcode&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteAddress.postcode}&lt;/postcode&gt;
+               &lt;/siteAddress&gt;
+               &lt;farmSurface&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.farmSurface}&lt;/farmSurface&gt;
+               &lt;productionType&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.productionType}&lt;/productionType&gt;
+               &lt;breedingMethodologyType&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.breedingMethodologyType}&lt;/breedingMethodologyType&gt;
+               &lt;siteInspectionDate&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.siteInspectionDate}&lt;/siteInspectionDate&gt;
+               &lt;referenceLegislation&gt;${farmSiteInspectionResponseType.inputMessageData.siteInspectionVerbal.referenceLegislation}&lt;/referenceLegislation&gt;
+            &lt;/siteInspectionDetails&gt;
+         &lt;/inputMessageData&gt;
+      &lt;/reg:farmOpeningNotificationElementRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</bpmn:documentation>
     <bpmn:sequenceFlow id="Flow_0kcsa2u" sourceRef="farmBusinessStartupRequestType" targetRef="farmOpeningSiteInspectionRequest" />
     <bpmn:sequenceFlow id="Flow_0vcmoos" sourceRef="farmSiteInspectionResponseType" targetRef="Activity_1e1xjp2" />
-    <bpmn:sequenceFlow id="Flow_1gv08c3" sourceRef="farmRegistrationNotification" targetRef="Activity_1sidxdw" />
+    <bpmn:sequenceFlow id="Flow_1gv08c3" sourceRef="farmRegistrationNotificationType" targetRef="farmBusinessCodeStartupNotification" />
     <bpmn:endEvent id="Event_1l74sb2">
-      <bpmn:incoming>Flow_10g3zkl</bpmn:incoming>
+      <bpmn:incoming>Flow_1fu9vxj</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:startEvent id="farmBusinessStartupRequestType" name="Farm Business Code Requested">
       <bpmn:outgoing>Flow_0kcsa2u</bpmn:outgoing>
@@ -16,35 +76,10 @@
       <bpmn:incoming>Flow_0yukcau</bpmn:incoming>
       <bpmn:outgoing>Flow_0vcmoos</bpmn:outgoing>
     </bpmn:receiveTask>
-    <bpmn:receiveTask id="farmRegistrationNotification" name="Receive Farm Business Startup Notification" messageRef="Message_29d76r9">
+    <bpmn:receiveTask id="farmRegistrationNotificationType" name="Receive Farm Business Startup Notification" messageRef="Message_29d76r9">
       <bpmn:incoming>Flow_18p8ga7</bpmn:incoming>
       <bpmn:outgoing>Flow_1gv08c3</bpmn:outgoing>
     </bpmn:receiveTask>
-    <bpmn:sendTask id="Activity_1sidxdw" name="Send farm Business Code">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:connectorId>soap-http-connector</camunda:connectorId>
-        </camunda:connector>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="headers">
-            <camunda:map>
-              <camunda:entry key="Content-Type">application/soap+xml;charset=UTF-8;action=""</camunda:entry>
-            </camunda:map>
-          </camunda:inputParameter>
-          <camunda:inputParameter name="url">http://localhost:6060/</camunda:inputParameter>
-          <camunda:inputParameter name="payload">&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bpd="http://bpd.disim.univaq.it/"&gt;
- &lt;soapenv:Header/&gt;
-   &lt;soapenv:Body&gt;
-     &lt;bpd:op&gt;
-     &lt;/bpd:op&gt;
-   &lt;/soapenv:Body&gt;
-&lt;/soapenv:Envelope&gt;</camunda:inputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1gv08c3</bpmn:incoming>
-      <bpmn:outgoing>Flow_10g3zkl</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:sequenceFlow id="Flow_10g3zkl" sourceRef="Activity_1sidxdw" targetRef="Event_1l74sb2" />
     <bpmn:sendTask id="Activity_1e1xjp2" name="Farm Opening">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -122,7 +157,7 @@
       <bpmn:incoming>Flow_0vcmoos</bpmn:incoming>
       <bpmn:outgoing>Flow_18p8ga7</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sequenceFlow id="Flow_18p8ga7" sourceRef="Activity_1e1xjp2" targetRef="farmRegistrationNotification" />
+    <bpmn:sequenceFlow id="Flow_18p8ga7" sourceRef="Activity_1e1xjp2" targetRef="farmRegistrationNotificationType" />
     <bpmn:sendTask id="farmOpeningSiteInspectionRequest" name="Request Farm Opening Site Inspection">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -168,29 +203,63 @@
       <bpmn:outgoing>Flow_0yukcau</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_0yukcau" sourceRef="farmOpeningSiteInspectionRequest" targetRef="farmSiteInspectionResponseType" />
+    <bpmn:scriptTask id="ScriptFinish" name="Script" scriptFormat="javascript">
+      <bpmn:incoming>Flow_0njg57o</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fu9vxj</bpmn:outgoing>
+      <bpmn:script>var system = java.lang.System;
+system.out.println("LocalHealthCareCompany Process Finished")</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1fu9vxj" sourceRef="ScriptFinish" targetRef="Event_1l74sb2" />
+    <bpmn:sendTask id="farmBusinessCodeStartupNotification" name="Request Farm Opening Site Inspection">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://localhost:8080/ode/processes/User</camunda:inputParameter>
+            <camunda:inputParameter name="payload">&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cdus="http://eu.chorevolution.farmbusinessstartup/cduser"&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;cdus:farmBusinessStartupResponseElementRequest&gt;
+         &lt;choreographyId&gt;
+            &lt;choreographyId&gt;${farmRegistrationNotificationType.choreographyId.choreographyId}&lt;/choreographyId&gt;
+         &lt;/choreographyId&gt;
+         &lt;messageData&gt;
+            &lt;farmCode&gt;${farmRegistrationNotificationType.inputMessageData.farmCode}&lt;/farmCode&gt;
+         &lt;/messageData&gt;
+      &lt;/cdus:farmBusinessStartupResponseElementRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/soap+xml;charset=UTF-8;action=""</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>soap-http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1gv08c3</bpmn:incoming>
+      <bpmn:outgoing>Flow_0njg57o</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0njg57o" sourceRef="farmBusinessCodeStartupNotification" targetRef="ScriptFinish" />
   </bpmn:process>
   <bpmn:message id="Message_2v1lt56" name="farmBusinessStartupRequestElementRequest" />
   <bpmn:message id="Message_3l2fah1" name="farmSiteInspectionResponseType" />
-  <bpmn:message id="Message_29d76r9" name="farmRegistrationNotification" />
+  <bpmn:message id="Message_29d76r9" name="farmRegistrationNotificationType" />
   <bpmn:message id="Message_0dui7ah" name="farmBusinessCodeRequest" />
   <bpmn:message id="Message_3kio9vj" name="farmBusinessStartupRequestType" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_173o0bd">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="LocalHealthcareCompany">
       <bpmndi:BPMNEdge id="Flow_0yukcau_di" bpmnElement="Flow_0yukcau">
         <di:waypoint x="370" y="117" />
         <di:waypoint x="430" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18p8ga7_di" bpmnElement="Flow_18p8ga7">
         <di:waypoint x="690" y="117" />
-        <di:waypoint x="760" y="117" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_10g3zkl_di" bpmnElement="Flow_10g3zkl">
-        <di:waypoint x="1010" y="117" />
-        <di:waypoint x="1072" y="117" />
+        <di:waypoint x="750" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1gv08c3_di" bpmnElement="Flow_1gv08c3">
-        <di:waypoint x="860" y="117" />
-        <di:waypoint x="910" y="117" />
+        <di:waypoint x="850" y="117" />
+        <di:waypoint x="920" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vcmoos_di" bpmnElement="Flow_0vcmoos">
         <di:waypoint x="530" y="117" />
@@ -200,9 +269,14 @@
         <di:waypoint x="215" y="117" />
         <di:waypoint x="270" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1l74sb2_di" bpmnElement="Event_1l74sb2">
-        <dc:Bounds x="1072" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1fu9vxj_di" bpmnElement="Flow_1fu9vxj">
+        <di:waypoint x="1170" y="117" />
+        <di:waypoint x="1202" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0njg57o_di" bpmnElement="Flow_0njg57o">
+        <di:waypoint x="1020" y="117" />
+        <di:waypoint x="1070" y="117" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_00s84qv_di" bpmnElement="farmBusinessStartupRequestType">
         <dc:Bounds x="179" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -212,20 +286,26 @@
       <bpmndi:BPMNShape id="Activity_0j2bccf_di" bpmnElement="farmSiteInspectionResponseType">
         <dc:Bounds x="430" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0p1vyab_di" bpmnElement="farmRegistrationNotification">
-        <dc:Bounds x="760" y="77" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1tc79su_di" bpmnElement="Activity_1sidxdw">
-        <dc:Bounds x="910" y="77" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0xequbt_di" bpmnElement="Activity_1e1xjp2">
         <dc:Bounds x="590" y="77" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1h8aiq4_di" bpmnElement="farmOpeningSiteInspectionRequest">
         <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1l74sb2_di" bpmnElement="Event_1l74sb2">
+        <dc:Bounds x="1202" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vzel4q_di" bpmnElement="ScriptFinish">
+        <dc:Bounds x="1070" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p1vyab_di" bpmnElement="farmRegistrationNotificationType">
+        <dc:Bounds x="750" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0g3a6f1" bpmnElement="farmBusinessCodeStartupNotification">
+        <dc:Bounds x="920" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

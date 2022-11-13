@@ -72,7 +72,7 @@ system.out.println("Veterinary Process Finished")</bpmn:script>
       <bpmn:incoming>Flow_0gb0f3k</bpmn:incoming>
       <bpmn:outgoing>Flow_1umfifd</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_151k8vz">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_1umfifd" sourceRef="Event_0ham0zw" targetRef="Activity_0g5t4p8" />
@@ -87,6 +87,10 @@ system.out.println("Veterinary Process Finished")</bpmn:script>
   <bpmn:message id="Message_2edcth0" name="farmRegistrationNotificationType" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Veterinary">
+      <bpmndi:BPMNEdge id="Flow_0wjdkjh_di" bpmnElement="Flow_0wjdkjh">
+        <di:waypoint x="750" y="120" />
+        <di:waypoint x="830" y="120" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0gb0f3k_di" bpmnElement="Flow_0gb0f3k">
         <di:waypoint x="340" y="120" />
         <di:waypoint x="382" y="120" />
@@ -107,10 +111,6 @@ system.out.println("Veterinary Process Finished")</bpmn:script>
         <di:waypoint x="930" y="120" />
         <di:waypoint x="982" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0wjdkjh_di" bpmnElement="Flow_0wjdkjh">
-        <di:waypoint x="750" y="120" />
-        <di:waypoint x="830" y="120" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1fqhwd5_di" bpmnElement="farmSiteInspectionRequestType">
         <dc:Bounds x="162" y="102" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -119,6 +119,13 @@ system.out.println("Veterinary Process Finished")</bpmn:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_05cdchf_di" bpmnElement="Activity_18xwakz">
         <dc:Bounds x="240" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_088ce3b_di" bpmnElement="Event_088ce3b">
+        <dc:Bounds x="982" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vzel4q_di" bpmnElement="Activity_11ggnb0">
+        <dc:Bounds x="830" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_01zxqke" bpmnElement="Activity_0g5t4p8">
@@ -130,13 +137,6 @@ system.out.println("Veterinary Process Finished")</bpmn:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0p8zhhg_di" bpmnElement="farmRegistrationNotificationType">
         <dc:Bounds x="650" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0vzel4q_di" bpmnElement="Activity_11ggnb0">
-        <dc:Bounds x="830" y="80" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_088ce3b_di" bpmnElement="Event_088ce3b">
-        <dc:Bounds x="982" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

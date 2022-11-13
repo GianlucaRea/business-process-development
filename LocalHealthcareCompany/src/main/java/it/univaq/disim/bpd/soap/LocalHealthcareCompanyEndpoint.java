@@ -11,6 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import it.univaq.disim.bpd.domain.FarmBusinessStartupRequest;
 import it.univaq.disim.bpd.domain.FarmBusinessStartupRequestType;
 import it.univaq.disim.bpd.domain.FarmRegistrationNotification;
+import it.univaq.disim.bpd.domain.FarmRegistrationNotificationType;
 import it.univaq.disim.bpd.domain.FarmSiteInspectionRequest;
 import it.univaq.disim.bpd.domain.FarmSiteInspectionResponseType;
 
@@ -47,30 +48,15 @@ public class LocalHealthcareCompanyEndpoint {
 
 	}
 	
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "farmRegistrationNotification")
-	public void receiveFarmBusinessStartupNotification(@RequestPayload FarmRegistrationNotification request) {
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "farmRegistrationNotificationElementRequest")
+	public void receiveFarmBusinessStartupNotification(@RequestPayload FarmRegistrationNotificationType request) {
 		
-		System.out.println("Received SOAP message farmRegistrationNotification");
-		
-		String businessKey = generateRandBusinessKey();
+		System.out.println("Received SOAP message farmRegistrationNotificationType");
 
-		runtimeService.createMessageCorrelation("farmRegistrationNotification")
-				.processInstanceBusinessKey("XXXXX")
-				.setVariable("farmRegistrationNotification", request)
+		runtimeService.createMessageCorrelation("farmRegistrationNotificationType")
+				.processInstanceBusinessKey(request.getChoreographyId().getChoreographyId())
+				.setVariable("farmRegistrationNotificationType", request)
 				.correlate();
-
-	}
-
-	private static String generateRandBusinessKey() {
-		int leftLimit = 97; // letter 'a'
-	    int rightLimit = 122; // letter 'z'
-	    int targetStringLength = 10;
-	    Random random = new Random();
-
-	    return random.ints(leftLimit, rightLimit + 1)
-	      .limit(targetStringLength)
-	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-	      .toString();
 	}
 
 }

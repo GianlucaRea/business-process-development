@@ -59,6 +59,11 @@
 			<groupId>org.camunda.spin</groupId>
 			<artifactId>camunda-spin-dataformat-all</artifactId>
 		</dependency>
+		
+		  <dependency>
+		    <groupId>org.camunda.spin</groupId>
+		    <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+		  </dependency>
 
 		<dependency>
 			<groupId>org.camunda.bpm</groupId>
@@ -94,6 +99,7 @@
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
 		</dependency>
+			
 
 	</dependencies>
 
