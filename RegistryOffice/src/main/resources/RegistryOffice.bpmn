@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
   <bpmn:process id="RegistryOffice" isExecutable="true">
     <bpmn:startEvent id="farmOpeningNotificationType" name="Farm Opening Requested">
       <bpmn:outgoing>Flow_1iy2rtr</bpmn:outgoing>
@@ -35,7 +35,7 @@ system.out.println("RegistryOffice process is finished")</bpmn:script>
          &lt;choreographyTaskName&gt;${farmOpeningNotificationType.choreographyTaskName}&lt;/choreographyTaskName&gt;
          &lt;inputMessageName&gt;${farmOpeningNotificationType.inputMessageName}&lt;/inputMessageName&gt;
          &lt;inputMessageData&gt;
-            &lt;farmCode&gt;Prova1&lt;/farmCode&gt;
+            &lt;farmCode&gt;${execution.getVariable("soapResponse")}&lt;/farmCode&gt;
             &lt;farmName&gt;${farmOpeningNotificationType.inputMessageData.farmOpeningRequestForm.farm.farmName}&lt;/farmName&gt;
             &lt;siteAddress&gt;
                &lt;city&gt;${farmOpeningNotificationType.inputMessageData.farmOpeningRequestForm.farm.companyHeadquarter.city}&lt;/city&gt;
@@ -101,7 +101,7 @@ system.out.println("RegistryOffice process is finished")</bpmn:script>
          &lt;choreographyTaskName&gt;${farmOpeningNotificationType.choreographyTaskName}&lt;/choreographyTaskName&gt;
          &lt;inputMessageName&gt;${farmOpeningNotificationType.inputMessageName}&lt;/inputMessageName&gt;
          &lt;inputMessageData&gt;
-            &lt;farmCode&gt;Prova1&lt;/farmCode&gt;
+            &lt;farmCode&gt;${execution.getVariable("soapResponse")}&lt;/farmCode&gt;
             &lt;farmName&gt;${farmOpeningNotificationType.inputMessageData.farmOpeningRequestForm.farm.farmName}&lt;/farmName&gt;
             &lt;siteAddress&gt;
                &lt;city&gt;${farmOpeningNotificationType.inputMessageData.farmOpeningRequestForm.farm.companyHeadquarter.city}&lt;/city&gt;
@@ -137,7 +137,7 @@ system.out.println("RegistryOffice process is finished")</bpmn:script>
    &lt;soapenv:Header/&gt;
    &lt;soapenv:Body&gt;
       &lt;mun:farmBusinessCodeStartupNotificationElementRequest&gt;
-         &lt;farmCode&gt;Prova1&lt;/farmCode&gt;
+         &lt;farmCode&gt;${execution.getVariable("soapResponse")}&lt;/farmCode&gt;
          &lt;farm&gt;
             &lt;farmName&gt;${farmOpeningNotificationType.inputMessageData.farmOpeningRequestForm.farm.farmName}&lt;/farmName&gt;
             &lt;companyName&gt;${farmOpeningNotificationType.inputMessageData.farmOpeningRequestForm.farm.companyName}&lt;/companyName&gt;
@@ -170,7 +170,15 @@ system.out.println("RegistryOffice process is finished")</bpmn:script>
       <bpmn:outgoing>Flow_17yw6q5</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_17yw6q5" sourceRef="farmBusinessCodeStartupNotification" targetRef="Gateway_14vgghe" />
-    <bpmn:sequenceFlow id="Flow_1lbiu3a" sourceRef="farmRegistration" targetRef="Activity_10w24i4" />
+    <bpmn:scriptTask id="Activity_10w24i4" name="Script" scriptFormat="javascript">
+      <bpmn:incoming>Flow_1lbiu3a</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bxs2uy</bpmn:outgoing>
+      <bpmn:script>var system = java.lang.System;
+system.out.println("Farm code given")
+var res = execution.getVariable("soapResponse");
+system.out.println(res);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0bxs2uy" sourceRef="Activity_10w24i4" targetRef="Event_1p0fpya" />
     <bpmn:serviceTask id="farmRegistration" name="Registry Farm">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -230,7 +238,7 @@ system.out.println("RegistryOffice process is finished")</bpmn:script>
       &lt;/vet:farmRegistrationRequestElementRequest&gt;
    &lt;/soapenv:Body&gt;
 &lt;/soapenv:Envelope&gt;</camunda:inputParameter>
-            <camunda:outputParameter name="soapResponse">${S(response).childElement("Body").childElement("http://eu.chorevolution.farmbusinessstartup/services/veterinaryregionalregister", "farmRegistrationResponseElementResponse").childElement("farmCode").textContent()}</camunda:outputParameter>
+            <camunda:outputParameter name="soapResponse">${S(response).childElement("Body").childElement("http://eu.chorevolution.farmbusinessstartup/services/veterinaryregionalregister","farmRegistrationResponseElementResponse").textContent()}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>soap-http-connector</camunda:connectorId>
         </camunda:connector>
@@ -238,15 +246,7 @@ system.out.println("RegistryOffice process is finished")</bpmn:script>
       <bpmn:incoming>Flow_1iy2rtr</bpmn:incoming>
       <bpmn:outgoing>Flow_1lbiu3a</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:scriptTask id="Activity_10w24i4" name="Script" scriptFormat="javascript">
-      <bpmn:incoming>Flow_1lbiu3a</bpmn:incoming>
-      <bpmn:outgoing>Flow_0bxs2uy</bpmn:outgoing>
-      <bpmn:script>var system = java.lang.System;
-system.out.println("Farm code given")
-var res = execution.getVariable("farmCode");
-system.out.println(res);</bpmn:script>
-    </bpmn:scriptTask>
-    <bpmn:sequenceFlow id="Flow_0bxs2uy" sourceRef="Activity_10w24i4" targetRef="Event_1p0fpya" />
+    <bpmn:sequenceFlow id="Flow_1lbiu3a" sourceRef="farmRegistration" targetRef="Activity_10w24i4" />
   </bpmn:process>
   <bpmn:message id="Message_0pt8j0v" name="farmOpeningNotificationType" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
