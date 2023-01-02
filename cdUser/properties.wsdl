@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://eu.chorevolution.farmbusinessstartup/properties" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="properties" targetNamespace="http://eu.chorevolution.farmbusinessstartup/properties">
-  <vprop:property name="chorID" type="xsd:string"/>
-</definitions>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
+  <bpmn:process id="User-process" isExecutable="true">
+    <bpmn:sendTask id="Activity_0lszx4x" name="Request Farm Business Code">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://localhost:7070/LocalHealthcareCompany</camunda:inputParameter>
+            <camunda:inputParameter name="payload">&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://eu.chorevolution.farmbusinessstartup/localhealthcarecompany"&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;loc:farmBusinessStartupRequestElementRequest&gt;
+         &lt;choreographyId&gt;
+            &lt;choreographyId&gt;${now()}&lt;/choreographyId&gt;
+         &lt;/choreographyId&gt;
+         &lt;senderParticipantName&gt;Pippo&lt;/senderParticipantName&gt;
+         &lt;receiverParticipantName&gt;Pluto&lt;/receiverParticipantName&gt;
+         &lt;choreographyTaskName&gt;Prova&lt;/choreographyTaskName&gt;
+         &lt;inputMessageName&gt;Prova&lt;/inputMessageName&gt;
+         &lt;inputMessageData&gt;
+            &lt;farmBusinessStartupRequestForm&gt;
+               &lt;owner&gt;
+                  &lt;name&gt;John&lt;/name&gt;
+                  &lt;surname&gt;Wick&lt;/surname&gt;
+                  &lt;address&gt;
+                     &lt;city&gt;LA&lt;/city&gt;
+                     &lt;street&gt;boulevard&lt;/street&gt;
+                     &lt;postcode&gt;03133&lt;/postcode&gt;
+                  &lt;/address&gt;
+                  &lt;phoneNumber&gt;1234567890&lt;/phoneNumber&gt;
+                  &lt;email&gt;email1@email.com&lt;/email&gt;
+                  &lt;fiscalCode&gt;qw12qw12qw1&lt;/fiscalCode&gt;
+               &lt;/owner&gt;
+               &lt;farm&gt;
+                  &lt;farmName&gt;Fattoria&lt;/farmName&gt;
+                  &lt;companyName&gt;Fattoria&lt;/companyName&gt;
+                  &lt;companyType&gt;1&lt;/companyType&gt;
+                  &lt;companyHeadquarter&gt;
+                     &lt;city&gt;RM&lt;/city&gt;
+                     &lt;street&gt;Via Cavour&lt;/street&gt;
+                     &lt;postcode&gt;00184&lt;/postcode&gt;
+                  &lt;/companyHeadquarter&gt;
+                  &lt;farmSurface&gt;1000&lt;/farmSurface&gt;
+                  &lt;phoneNumber&gt;0987654321&lt;/phoneNumber&gt;
+                  &lt;email&gt;email2@com&lt;/email&gt;
+                  &lt;vatNumber&gt;12345tt&lt;/vatNumber&gt;
+                  &lt;productionType&gt;1&lt;/productionType&gt;
+                  &lt;breedingMethodologyType&gt;1&lt;/breedingMethodologyType&gt;
+               &lt;/farm&gt;
+            &lt;/farmBusinessStartupRequestForm&gt;
+         &lt;/inputMessageData&gt;
+      &lt;/loc:farmBusinessStartupRequestElementRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">text/xml</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>soap-http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_18fi95o</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vjctx1</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_1vjctx1" sourceRef="Activity_0lszx4x" targetRef="farmBusinessStartupResponseType" />
+    <bpmn:receiveTask id="farmBusinessStartupResponseType" name="Recieve Farm Business Code" messageRef="Message_0i0bn86">
+      <bpmn:incoming>Flow_1vjctx1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wmunqn</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:sequenceFlow id="Flow_1wmunqn" sourceRef="farmBusinessStartupResponseType" targetRef="Activity_1ius44l" />
+    <bpmn:scriptTask id="Activity_10w24i4" name="Script" scriptFormat="javascript">
+      <bpmn:incoming>Flow_045un87</bpmn:incoming>
+      <bpmn:outgoing>Flow_19bex6m</bpmn:outgoing>
+      <bpmn:script>var system = java.lang.System;
+system.out.println("Start User")</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1ius44l" name="Script" scriptFormat="javascript">
+      <bpmn:incoming>Flow_1wmunqn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dukbv4</bpmn:outgoing>
+      <bpmn:script>var system = java.lang.System;
+system.out.println("User Process Finished" )</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_0m7yauy">
+      <bpmn:incoming>Flow_1dukbv4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1dukbv4" sourceRef="Activity_1ius44l" targetRef="Event_0m7yauy" />
+    <bpmn:intermediateCatchEvent id="Event_1p0fpya">
+      <bpmn:incoming>Flow_19bex6m</bpmn:incoming>
+      <bpmn:outgoing>Flow_18fi95o</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_06lbb4u">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:startEvent id="Event_041idj4">
+      <bpmn:outgoing>Flow_045un87</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_045un87" sourceRef="Event_041idj4" targetRef="Activity_10w24i4" />
+    <bpmn:sequenceFlow id="Flow_19bex6m" sourceRef="Activity_10w24i4" targetRef="Event_1p0fpya" />
+    <bpmn:sequenceFlow id="Flow_18fi95o" sourceRef="Event_1p0fpya" targetRef="Activity_0lszx4x" />
+  </bpmn:process>
+  <bpmn:message id="Message_0i0bn86" name="farmBusinessStartupResponseType" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="User-process">
+      <bpmndi:BPMNEdge id="Flow_1wmunqn_di" bpmnElement="Flow_1wmunqn">
+        <di:waypoint x="810" y="117" />
+        <di:waypoint x="870" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vjctx1_di" bpmnElement="Flow_1vjctx1">
+        <di:waypoint x="660" y="117" />
+        <di:waypoint x="710" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dukbv4_di" bpmnElement="Flow_1dukbv4">
+        <di:waypoint x="970" y="117" />
+        <di:waypoint x="1012" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_045un87_di" bpmnElement="Flow_045un87">
+        <di:waypoint x="188" y="130" />
+        <di:waypoint x="280" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19bex6m_di" bpmnElement="Flow_19bex6m">
+        <di:waypoint x="380" y="130" />
+        <di:waypoint x="462" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18fi95o_di" bpmnElement="Flow_18fi95o">
+        <di:waypoint x="498" y="130" />
+        <di:waypoint x="560" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0m7yauy_di" bpmnElement="Event_0m7yauy">
+        <dc:Bounds x="1012" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1ag8e7s" bpmnElement="Activity_1ius44l">
+        <dc:Bounds x="870" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0agonr5_di" bpmnElement="farmBusinessStartupResponseType">
+        <dc:Bounds x="710" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07nlqz4_di" bpmnElement="Activity_0lszx4x">
+        <dc:Bounds x="560" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1s0ygbf" bpmnElement="Event_1p0fpya">
+        <dc:Bounds x="462" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_041idj4_di" bpmnElement="Event_041idj4">
+        <dc:Bounds x="152" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1lem2qk" bpmnElement="Activity_10w24i4">
+        <dc:Bounds x="280" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
