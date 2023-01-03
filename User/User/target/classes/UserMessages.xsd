@@ -144,18 +144,11 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="farmBusinessStartupRequestElementRequest" type="farmBusinessStartupRequestType"/>
-    <xsd:complexType name="farmBusinessStartupResponseReturnType">
+    <xsd:complexType name="farmBusinessStartupResponseRequestType">
         <xsd:sequence>
             <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
             <xsd:element name="messageData" type="farmBusinessStartupResponse"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="farmBusinessStartupResponseElementResponse" type="farmBusinessStartupResponseReturnType"/>
-    <xsd:complexType name="farmBusinessStartupResponseType">
-        <xsd:sequence>
-            <xsd:element name="choreographyId" type="choreographyInstanceRequest"/>
-            <xsd:element name="messageData" type="farmBusinessStartupResponse"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="farmBusinessStartupResponseElementRequest" type="farmBusinessStartupResponseType"/>
+    <xsd:element name="farmBusinessStartupResponseElementRequest" type="farmBusinessStartupResponseRequestType"/>
 </xsd:schema>
