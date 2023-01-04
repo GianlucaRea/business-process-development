@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.3.0 
+Vedere <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
+Generato il: 2023.01.04 alle 11:52:17 AM CET 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://eu.chorevolution.farmbusinessstartup/user">
+    <schemaBindings map="false">
+      <package name="it.univaq.disim.bpd.domain"/>
+    </schemaBindings>
+    <bindings scd="~tns:farmBusinessStartupRequestType">
+      <class ref="it.univaq.disim.bpd.domain.FarmBusinessStartupRequestType"/>
+    </bindings>
+    <bindings scd="~tns:farmBusinessStartupResponseRequestType">
+      <class ref="it.univaq.disim.bpd.domain.FarmBusinessStartupResponseRequestType"/>
+    </bindings>
+    <bindings scd="~tns:farmBusinessStartupRequest">
+      <class ref="it.univaq.disim.bpd.domain.FarmBusinessStartupRequest"/>
+    </bindings>
+    <bindings scd="~tns:farmBusinessStartupRequestFormDetails">
+      <class ref="it.univaq.disim.bpd.domain.FarmBusinessStartupRequestFormDetails"/>
+    </bindings>
+    <bindings scd="~tns:personData">
+      <class ref="it.univaq.disim.bpd.domain.PersonData"/>
+    </bindings>
+    <bindings scd="~tns:addressDetails">
+      <class ref="it.univaq.disim.bpd.domain.AddressDetails"/>
+    </bindings>
+    <bindings scd="~tns:farmDetails">
+      <class ref="it.univaq.disim.bpd.domain.FarmDetails"/>
+    </bindings>
+    <bindings scd="~tns:farmSiteInspectionRequest">
+      <class ref="it.univaq.disim.bpd.domain.FarmSiteInspectionRequest"/>
+    </bindings>
+    <bindings scd="~tns:farmSiteInspectionResponse">
+      <class ref="it.univaq.disim.bpd.domain.FarmSiteInspectionResponse"/>
+    </bindings>
+    <bindings scd="~tns:veterinarySiteInspectionDetails">
+      <class ref="it.univaq.disim.bpd.domain.VeterinarySiteInspectionDetails"/>
+    </bindings>
+    <bindings scd="~tns:farmOpeningNotification">
+      <class ref="it.univaq.disim.bpd.domain.FarmOpeningNotification"/>
+    </bindings>
+    <bindings scd="~tns:farmRegistrationRequest">
+      <class ref="it.univaq.disim.bpd.domain.FarmRegistrationRequest"/>
+    </bindings>
+    <bindings scd="~tns:farmRegistrationResponse">
+      <class ref="it.univaq.disim.bpd.domain.FarmRegistrationResponse"/>
+    </bindings>
+    <bindings scd="~tns:farmBusinessStartupResponse">
+      <class ref="it.univaq.disim.bpd.domain.FarmBusinessStartupResponse"/>
+    </bindings>
+    <bindings scd="~tns:farmRegistrationNotification">
+      <class ref="it.univaq.disim.bpd.domain.FarmRegistrationNotification"/>
+    </bindings>
+    <bindings scd="~tns:farmBusinessCodeStartupNotification">
+      <class ref="it.univaq.disim.bpd.domain.FarmBusinessCodeStartupNotification"/>
+    </bindings>
+    <bindings scd="~tns:choreographyInstanceRequest">
+      <class ref="it.univaq.disim.bpd.domain.ChoreographyInstanceRequest"/>
+    </bindings>
+    <bindings scd="~tns:companyTypology">
+      <typesafeEnumClass ref="it.univaq.disim.bpd.domain.CompanyTypology"/>
+    </bindings>
+    <bindings scd="~tns:productionTypology">
+      <typesafeEnumClass ref="it.univaq.disim.bpd.domain.ProductionTypology"/>
+    </bindings>
+    <bindings scd="~tns:breedingMethodTypology">
+      <typesafeEnumClass ref="it.univaq.disim.bpd.domain.BreedingMethodTypology"/>
+    </bindings>
+  </bindings>
+</bindings>
+
