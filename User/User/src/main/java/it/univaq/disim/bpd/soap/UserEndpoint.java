@@ -15,15 +15,15 @@ public class UserEndpoint {
 
 	@Autowired
 	private RuntimeService runtimeService;
-	
+
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "farmBusinessStartupResponseElementRequest")
 	public void receiveFarmBusinessCode(@RequestPayload FarmBusinessStartupResponseRequestType request) {
-												  
+
 		System.out.println("Received SOAP message farmBusinessStartupResponseRequestType");
 		System.out.println("ChoreographyID :" + request.getChoreographyId().getChoreographyId());
 		System.out.println("Farm Code :" + request.getMessageData().getFarmCode());
-		
-		runtimeService.createMessageCorrelation("farmBusinessStartupResponseRequestType").processInstanceBusinessKey(request.getChoreographyId().getChoreographyId()).setVariable("farmBusinessStartupResponseRequestType", request).correlate(); 
 
-	}	
+		runtimeService.createMessageCorrelation("farmBusinessStartupResponseRequestType")
+				.setVariable("farmBusinessStartupResponseRequestType", request).correlate();
+	}
 }
