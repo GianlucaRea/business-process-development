@@ -1,4 +1,4 @@
-# qd-museum
+# business-process-development
 University Project for the course of Business Process Development at the University of L'Aquila for the Master's Degree in Advanced Software Engineering.
 
 ## Description
